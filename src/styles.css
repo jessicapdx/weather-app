@@ -61,6 +61,11 @@ table {
   margin: 15px;
 }
 
+.footer-text {
+  font-size: 16px;
+  font-weight: 400;
+}
+
 .forecast-btns {
   margin: 0 15px 15px 0;
   position: relative;
