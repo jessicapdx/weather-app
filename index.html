@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html language="en">
+  <head>
+    <title>☔️ JB Weather App</title>
+    <meta charset="UTF-8" />
+    <link href="src/styles.css" rel="stylesheet"/>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <form id="search-bar">
+				<input type="text" id="search" placeholder="Search by city & state"/>
+				<button type="submit" id="search-btn"/>Search</button>
+			</form>
+			<div class="row">
+    		<div class="col current-weather">
+      			<h2 id="current-city">Weather in Current City</h2>
+					<div class="row">
+						<div class="col">
+							<p id="current-time">Getting user time...</p>
+							<p class="current-condition">Rain</p>
+							<div>							
+								<p id="current-temp">62</p>
+								<div id="temp-units">
+									<span id="fahrenheit">℉</span> / <span id="celsius">℃</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-auto mr-auto">
+							<p class="current-icon">☔️</p>
+						</div>
+					</div>
+					<div class="row">
+						<p class="current-warning">⚠️ Flood Warning Near You ></p>
+					</div>	
+			</div>
+    		<div class="col today-weather">
+      			<h2 class="today-forecast-header">Today's Forecast</h2>
+				  	<div class="row">
+						<table class="table table-borderless">
+							<thead>
+								<tr class="today-time-grid">
+									<th class="daytime" scope="col">Morning</th>
+									<th class="daytime" scope="col">Afternoon</th>
+									<th class="daytime" scope="col">Evening</th>
+									<th class="daytime" scope="col">Overnight</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="today-icons">
+									<td>🌦</th>
+									<td>⛈</td>
+									<td>☔️</td>
+									<td>🌘</td>
+								</tr>
+								<tr class="today-temps">
+									<td>60℉</th>
+									<td>62℉</td>
+									<td>59℉</td>
+									<td>59℉</td>
+							</tbody>
+						</table>
+					</div>	
+				<div class="row forecast-btns">
+					<div class="col" align="left">
+						<button class="btn btn-secondary">< Yesterday</button>
+					</div>
+					<div class="col" align="right">
+						<button class="btn btn-primary">Tomorrow ></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">	
+			<div class="five-day-forecast">
+				<div class="row">
+					<div class="col">
+						<h2 class="five-day-header">5 Day Forecast</h2>
+					</div>
+				</div>
+				<div class="row">
+					<table class="table table-borderless five-day-grid">
+					<thead>
+						<tr class="weekday-forecast">
+							<th scope="col">Monday<span class="weekday">10/18</span></th>
+							<th scope="col">Tuesday<span class="weekday">10/19</span></th>
+							<th scope="col">Wednesday<span class="weekday">10/20</span></th>
+							<th scope="col">Thursday<span class="weekday">10/21</span></th>
+							<th scope="col">Friday<span class="weekday">10/22</span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="forecast-icons">
+							<td>🌧</td>
+							<td>🌦</td>
+							<td>⛈</td>
+							<td>⛅️</td>
+							<td>🌧</td>
+						</tr>
+						<tr class="forecast-temps">
+							<td>60℉</td>
+							<td>62℉</td>
+							<td>59℉</td>
+							<td>64℉</td>
+							<td>58℉</td>
+						</tr>
+					</tbody>
+					</table>
+			</div>	
+				<div class="row see-more-btn">
+					<div class="col" align="right">
+						<button class="btn btn-dark forecast-btns">See More ></button>
+					</div>
+			</div>
+	
+	
+	</div>	
+		</div>
+	</div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
