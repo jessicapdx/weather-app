@@ -3,9 +3,13 @@ table {
   max-width: auto;
 }
 
+.active:hover {
+  cursor: default;
+}
+
 .current-condition {
   color: rgb(69, 138, 241);
-  font-size: 24px;
+  font-size: 16px;
   text-transform: capitalize;
 }
 
@@ -78,6 +82,22 @@ table {
   text-align: center;
 }
 
+.temp-units {
+  color: rgb(114, 110, 110);
+  display: inline;
+  vertical-align: top;
+  line-height: 45px;
+  font-weight: 400;
+}
+
+.temp-units .active {
+  font-weight: bolder;
+}
+
+.temp-units .active {
+  color: #007bff;
+}
+
 .today-forecast-header {
   color: rgb(114, 110, 110);
   font-size: 30px;
@@ -124,7 +144,7 @@ table {
 
 .weekday-forecast {
   color: rgb(114, 110, 110);
-  font-size: 24px;
+  font-size: 16px;
   text-align: center;
 }
 
@@ -183,24 +203,4 @@ table {
   cursor: pointer;
   box-shadow: 0 0.125rem 0.625rem rgb(63 106 216 / 40%),
     0 0.0625rem 0.125rem rgb(63 106 216 / 50%);
-}
-
-.temp-units {
-  color: rgb(114, 110, 110);
-  display: inline;
-  vertical-align: top;
-  line-height: 45px;
-  font-weight: 400;
-}
-
-.temp-units .active {
-  font-weight: bolder;
-}
-
-.temp-units .active {
-  color: #007bff;
-}
-
-.active:hover {
-  cursor: default;
 }

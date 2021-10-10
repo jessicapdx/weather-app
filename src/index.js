@@ -4,6 +4,7 @@ let celsiusTemp = null;
 let fahrenheitElement = document.querySelector("#fahrenheit");
 let fahrenheitTemp = null;
 let temperatureElement = document.querySelector("#current-temp");
+let windElement = document.querySelector(".current-wind");
 
 function getLastUpdatedTime(response) {
   let currentTime = document.querySelector("#current-time");
@@ -37,6 +38,7 @@ function displayCurrentTemp(response) {
   let descriptionElement = document.querySelector(".current-condition");
   let iconElement = document.querySelector("#current-icon");
   let iconCode = response.data.weather[0].icon;
+  let windSpeed = Math.round(response.data.wind.speed);
   fahrenheitTemp = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
@@ -47,6 +49,7 @@ function displayCurrentTemp(response) {
     `http://openweathermap.org/img/wn/${iconCode}@2x.png`
   );
   iconElement.setAttribute("alt", description);
+  windElement.innerHTML = `Current Wind Speed: ${windSpeed} mph`;
 }
 
 function search(userCity) {

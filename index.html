@@ -21,10 +21,10 @@
 			</form>
 		</div>
 	  <div class="row">
-    	<div class="col current-weather">
+    	<div class="col-12 current-weather">
       		<h2 id="current-city">Loading city...</h2>
 				<div class="row">
-					<div class="col">
+					<div class="col-6">
 						<p id="current-time">Loading time...</p>
 						<p class="current-condition">Current Conditions</p>
 						<div>							
@@ -33,42 +33,46 @@
 								<span id="fahrenheit" class="active">℉</span> | <span id="celsius" class="active">℃</span>
 							</div>
 						</div>
-					</div>
-					<div class="col-auto mr-auto">
+					</div>	
+					<div class="col-6">
 						<img id="current-icon"></img>
 					</div>
 				</div>
-				<div class="row">
+				<div class="current-wind">
+					<p>Current Wind Speed: 0 mph</p>
+				</div>
+				<!-- <div class="row">
 					<p class="current-warning">⚠️ Flood Warning Near You ></p>
+				</div> -->
+		</div>
+    	<div class="col-12 today-weather">
+      		<h2 class="today-forecast-header">Today's Forecast</h2>
+				<div class="row">
+					<table class="table table-borderless">
+						<thead>
+							<tr class="today-time-grid">
+								<th class="daytime" scope="col">Morning</th>
+								<th class="daytime" scope="col">Afternoon</th>
+								<th class="daytime" scope="col">Evening</th>
+								<th class="daytime" scope="col">Overnight</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="today-icons">
+								<td>🌦</th>
+								<td>⛈</td>
+								<td>☔️</td>
+								<td>🌘</td>
+							</tr>
+							<tr class="today-temps">
+								<td>60℉</th>
+								<td>62℉</td>
+								<td>59℉</td>
+								<td>59℉</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>	
-			</div>
-    		<div class="col today-weather">
-      			<h2 class="today-forecast-header">Today's Forecast</h2>
-				  	<div class="row">
-						<table class="table table-borderless">
-							<thead>
-								<tr class="today-time-grid">
-									<th class="daytime" scope="col">Morning</th>
-									<th class="daytime" scope="col">Afternoon</th>
-									<th class="daytime" scope="col">Evening</th>
-									<th class="daytime" scope="col">Overnight</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="today-icons">
-									<td>🌦</th>
-									<td>⛈</td>
-									<td>☔️</td>
-									<td>🌘</td>
-								</tr>
-								<tr class="today-temps">
-									<td>60℉</th>
-									<td>62℉</td>
-									<td>59℉</td>
-									<td>59℉</td>
-							</tbody>
-						</table>
-					</div>	
 				<div class="row forecast-btns">
 					<div class="col" align="left">
 						<button class="btn btn-secondary">< Yesterday</button>
@@ -82,7 +86,7 @@
 		<div class="row">	
 			<div class="five-day-forecast">
 				<div class="row">
-					<div class="col">
+					<div class="col-12">
 						<h2 class="five-day-header">5 Day Forecast</h2>
 					</div>
 				</div>
