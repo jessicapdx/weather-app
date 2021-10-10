@@ -10,30 +10,32 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
 		/>
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
-      <form id="search-bar">
-				<input type="text" id="search" placeholder="Search by city & state"/>
-				<button type="submit" id="search-btn"/>Search</button>
-	  </form>
+		<div class="row">
+		<form id="search-bar">		
+		<input type="text" id="search" placeholder="Search by city & state"/>
+		<button type="submit" id="search-btn"/>Search</button>
+		</form>
+		</div>
 	  <div class="row">
     	<div class="col current-weather">
-      		<h2 id="current-city">Weather in Current City</h2>
+      		<h2 id="current-city">Loading city...</h2>
 				<div class="row">
 					<div class="col">
-						<p id="current-time">Getting user time...</p>
-						<p class="current-condition">Rain</p>
+						<p id="current-time">Loading time...</p>
+						<p class="current-condition">Loading current condition...</p>
 						<div>							
-							<p id="current-temp">62</p>
+							<p id="current-temp"></p>
 							<div id="temp-units">
 								<span id="fahrenheit">℉</span> / <span id="celsius">℃</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-auto mr-auto">
-						<p class="current-icon">☔️</p>
+						<img id="current-icon"></img>
 					</div>
 				</div>
 				<div class="row">

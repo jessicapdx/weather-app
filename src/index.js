@@ -1,43 +1,49 @@
-// Feature 1: In your project, display the current date and time using JavaScript: Tuesday 16:00
-let currentTime = document.querySelector("#current-time");
+let apiKey = "e9bb26ed626e12b32c5d3d0d23619b61";
+let city = "Moscow";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
-function userCurrentTime() {
-  let now = new Date();
+function getLastUpdatedTime(response) {
+  let currentTime = document.querySelector("#current-time");
+  let respDt = response.data.dt;
+  var ampm = "AM";
+  let now = new Date(respDt * 1000);
   let weekday = now.toLocaleString("en-US", { weekday: "long" });
   let hours = now.getHours();
+  var ampm = "Checking time...";
+  if (hours >= 12) {
+    hours = hours - 12;
+    ampm = "PM";
+  } else {
+    ampm = "AM";
+  }
   let minutes = now.getMinutes();
   let formattedMins = minutes.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
-  currentTime.innerHTML = `As of ${weekday} ${hours}:${formattedMins}`;
+  currentTime.innerHTML = `As of ${weekday}, ${hours}:${formattedMins} ${ampm}`;
 }
 
-userCurrentTime(currentTime);
+axios.get(apiUrl).then(getLastUpdatedTime);
 
-// Feature #2: Add a search engine, when searching for a city (i.e. Paris), display the city name on the page after the user submits the form.
-let searchEngine = document.querySelector("#search-bar");
+function displayCurrentTemp(response) {
+  console.log(response.data);
+  let temperatureElement = document.querySelector("#current-temp");
+  let cityElement = document.querySelector("#current-city");
+  let description = response.data.weather[0].description;
+  let descriptionElement = document.querySelector(".current-condition");
+  let iconElement = document.querySelector("#current-icon");
+  let iconCode = response.data.weather[0].icon;
+  let temp = response.data.main.temp;
 
-function currentUserData(response) {
-  console.log(response);
-  let cityString = document.querySelector("#current-city");
-  let currentCity = response.data.name;
-  cityString.innerHTML = `${currentCity} Weather`;
-  let currentTempData = Math.round(response.data.main.temp);
-  let currentTempElement = document.querySelector("#current-temp");
-  currentTempElement.innerHTML = `${currentTempData}`;
+  temperatureElement.innerHTML = Math.round(temp);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = description;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+  );
+  iconElement.setAttribute("alt", description);
 }
 
-function userSearch(event) {
-  event.preventDefault();
-  let searchCity = document.querySelector("#search").value;
-  if (searchCity) {
-    let apiKey = "e9bb26ed626e12b32c5d3d0d23619b61";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${apiKey}&units=imperial`;
-    axios.get(url).then(currentUserData);
-  } else {
-    alert("Please provide a city to see the weather");
-  }
-}
-
-searchEngine.addEventListener("submit", userSearch);
+axios.get(apiUrl).then(displayCurrentTemp);

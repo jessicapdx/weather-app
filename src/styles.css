@@ -6,12 +6,7 @@ table {
 .current-condition {
   color: rgb(69, 138, 241);
   font-size: 24px;
-}
-
-.current-icon {
-  font-size: 100px;
-  margin: 25px;
-  padding-top: 10px;
+  text-transform: capitalize;
 }
 
 .current-warning {
@@ -146,6 +141,12 @@ table {
   font-size: 30px;
 }
 
+#current-icon {
+  font-size: 100px;
+  margin: 25px;
+  padding-top: 10px;
+}
+
 #current-temp {
   display: inline-block;
   font-size: 65px;
@@ -167,29 +168,23 @@ table {
   background-color: rgb(255, 255, 255);
   color: rgb(116, 115, 117);
   font-size: 18px;
-  width: 35%;
-  margin: 10px 10px 0 0;
   display: inline-block;
   border: 1px solid rgb(114, 110, 110);
   border-radius: 6px;
-  bottom: 15px;
   color: rgb(79, 79, 80);
+  margin: 10px 15px;
   padding: 15px;
-  top: 20px;
 }
 
 #search-btn {
   background-color: rgb(114, 110, 110);
   border: 1px solid rgb(114, 110, 110);
   border-radius: 6px;
-  bottom: 15px;
   color: rgb(255, 255, 255);
   display: inline-block;
   font-size: 18px;
-  width: 13%;
-  margin: 10px 10px 0 0;
+  margin: 10px 15px;
   padding: 15px;
-  top: 20px;
 }
 
 #search-btn:hover {
