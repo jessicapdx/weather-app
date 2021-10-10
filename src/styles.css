@@ -132,11 +132,6 @@ table {
   color: rgb(165, 164, 167);
 }
 
-#celsius:hover {
-  font-weight: 500;
-  cursor: pointer;
-}
-
 #current-city {
   font-size: 30px;
 }
@@ -157,11 +152,6 @@ table {
 #current-time {
   font-size: 22px;
   font-weight: lighter;
-}
-
-#fahrenheit:hover {
-  font-weight: 500;
-  cursor: pointer;
 }
 
 #city-search {
@@ -195,8 +185,22 @@ table {
     0 0.0625rem 0.125rem rgb(63 106 216 / 50%);
 }
 
-#temp-units {
+.temp-units {
+  color: rgb(114, 110, 110);
   display: inline;
   vertical-align: top;
-  line-height: 55px;
+  line-height: 45px;
+  font-weight: 400;
+}
+
+.temp-units .active {
+  font-weight: bolder;
+}
+
+.temp-units .active {
+  color: #007bff;
+}
+
+.active:hover {
+  cursor: default;
 }

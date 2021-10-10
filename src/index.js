@@ -1,4 +1,9 @@
 let form = document.querySelector("#search-bar");
+let celsius = document.querySelector("#celsius");
+let celsiusTemp = null;
+let fahrenheitElement = document.querySelector("#fahrenheit");
+let fahrenheitTemp = null;
+let temperatureElement = document.querySelector("#current-temp");
 
 function getLastUpdatedTime(response) {
   let currentTime = document.querySelector("#current-time");
@@ -11,6 +16,9 @@ function getLastUpdatedTime(response) {
   if (hours >= 12) {
     hours = hours - 12;
     ampm = "PM";
+  } else if (hours === 0) {
+    hours = "01";
+    ampm = "AM";
   } else {
     ampm = "AM";
   }
@@ -29,9 +37,9 @@ function displayCurrentTemp(response) {
   let descriptionElement = document.querySelector(".current-condition");
   let iconElement = document.querySelector("#current-icon");
   let iconCode = response.data.weather[0].icon;
-  let temp = response.data.main.temp;
+  fahrenheitTemp = response.data.main.temp;
 
-  temperatureElement.innerHTML = Math.round(temp);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = description;
   iconElement.setAttribute(
@@ -55,4 +63,23 @@ function submitSearch(event) {
   search(userCity);
 }
 
+function displayCelsiusTemp(temp) {
+  event.preventDefault();
+  celsiusTemp = (5 / 9) * (fahrenheitTemp - 32);
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+  // remove the active class the fahrenheit link
+  fahrenheit.classList.remove("active");
+  celsius.classList.add("active");
+}
+
+function displayFahrenheitTemp(temp) {
+  event.preventDefault();
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+  // remove the active class from the celsius temp
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+}
+
 form.addEventListener("submit", submitSearch);
+fahrenheit.addEventListener("click", displayFahrenheitTemp);
+celsius.addEventListener("click", displayCelsiusTemp);
