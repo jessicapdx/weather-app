@@ -1,6 +1,4 @@
-let apiKey = "e9bb26ed626e12b32c5d3d0d23619b61";
-let city = "Moscow";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+let form = document.querySelector("#search-bar");
 
 function getLastUpdatedTime(response) {
   let currentTime = document.querySelector("#current-time");
@@ -24,10 +22,7 @@ function getLastUpdatedTime(response) {
   currentTime.innerHTML = `As of ${weekday}, ${hours}:${formattedMins} ${ampm}`;
 }
 
-axios.get(apiUrl).then(getLastUpdatedTime);
-
 function displayCurrentTemp(response) {
-  console.log(response.data);
   let temperatureElement = document.querySelector("#current-temp");
   let cityElement = document.querySelector("#current-city");
   let description = response.data.weather[0].description;
@@ -46,4 +41,18 @@ function displayCurrentTemp(response) {
   iconElement.setAttribute("alt", description);
 }
 
-axios.get(apiUrl).then(displayCurrentTemp);
+function search(userCity) {
+  let apiKey = "e9bb26ed626e12b32c5d3d0d23619b61";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(displayCurrentTemp);
+  axios.get(apiUrl).then(getLastUpdatedTime);
+}
+
+function submitSearch(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-search");
+  userCity = cityInputElement.value;
+  search(userCity);
+}
+
+form.addEventListener("submit", submitSearch);
