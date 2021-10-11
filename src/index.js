@@ -49,7 +49,8 @@ function displayCurrentTemp(response) {
     `http://openweathermap.org/img/wn/${iconCode}@2x.png`
   );
   iconElement.setAttribute("alt", description);
-  windElement.innerHTML = `Current Wind Speed: ${windSpeed} mph`;
+  windElement.innerHTML = `Wind Speed: ${windSpeed} mph`;
+  displayForecast();
 }
 
 function search(userCity) {
@@ -81,6 +82,40 @@ function displayFahrenheitTemp(temp) {
   // remove the active class from the celsius temp
   celsius.classList.remove("active");
   fahrenheit.classList.add("active");
+}
+
+function displayForecast() {
+  let forecastElement = document.querySelector(".today-weather");
+  let forecastHTML = "";
+  forecastHTML =
+    forecastElement.innerHTML +
+    `
+					<table class="table table-borderless">
+						<thead>
+							<tr class="today-time-grid">
+								<th class="daytime" scope="col">Morning</th>
+								<th class="daytime" scope="col">Afternoon</th>
+								<th class="daytime" scope="col">Evening</th>
+								<th class="daytime" scope="col">Overnight</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="today-icons">
+								<td>🌦</th>
+								<td>⛈</td>
+								<td>☔️</td>
+								<td>🌘</td>
+							</tr>
+							<tr class="today-temps">
+								<td>60℉</th>
+								<td>62℉</td>
+								<td>59℉</td>
+								<td>59℉</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 form.addEventListener("submit", submitSearch);
