@@ -1,6 +1,6 @@
 table {
   margin: 15px;
-  max-width: auto;
+  display: inline-block;
 }
 
 .active:hover {
@@ -51,7 +51,6 @@ table {
   border: 1px solid rgb(114, 110, 110);
   border-radius: 6px;
   margin: 10px;
-  width: 100%;
 }
 
 .five-day-header {
@@ -145,6 +144,7 @@ table {
 .weekday-forecast {
   color: rgb(114, 110, 110);
   font-size: 16px;
+  padding: 15px;
   text-align: center;
 }
 

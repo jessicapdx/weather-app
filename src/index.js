@@ -1,5 +1,7 @@
 let apiKey = "e9bb26ed626e12b32c5d3d0d23619b61";
-let forecastDateString = null;
+let baseUrl = "https://api.openweathermap.org/data/2.5";
+let iconUrl = null;
+let imgBaseUrl = "http://openweathermap.org";
 let form = document.querySelector("#search-bar");
 let celsius = document.querySelector("#celsius");
 let celsiusTemp = null;
@@ -8,10 +10,9 @@ let fahrenheitElement = document.querySelector("#fahrenheit");
 let fahrenheitTemp = null;
 let fullDate = null;
 let monthAbb = null;
-let now = null;
-let respDt = null;
 let temperatureElement = document.querySelector("#current-temp");
 let weekDay = null;
+let weekDayName = null;
 let windElement = document.querySelector(".current-wind");
 
 function getWeekDay(dtStamp) {
@@ -52,7 +53,7 @@ function getLastUpdatedTime(response) {
 function getForecast(coordinates) {
   let lat = coordinates.lat;
   let lon = coordinates.lon;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&unit=imperial`;
+  let apiUrl = `${baseUrl}/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayWeekForecast);
 }
 
@@ -70,10 +71,7 @@ function displayCurrentTemp(response) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = description;
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${iconCode}@2x.png`
-  );
+  iconElement.setAttribute("src", `${imgBaseUrl}/img/wn/${iconCode}@2x.png`);
   iconElement.setAttribute("alt", description);
   windElement.innerHTML = `Wind Speed: ${windSpeed} mph`;
   displayTodaysForecast();
@@ -81,7 +79,7 @@ function displayCurrentTemp(response) {
 }
 
 function search(userCity) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${userCity}&appid=${apiKey}&units=imperial`;
+  let apiUrl = `${baseUrl}/weather?q=${userCity}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayCurrentTemp);
   axios.get(apiUrl).then(getLastUpdatedTime);
 }
@@ -149,17 +147,28 @@ function displayTodaysForecast() {
 }
 
 function displayWeekForecast(response) {
-  let forecastElement = document.querySelector(".weekday-forecast");
-  let forecastIcon = document.querySelector(".forecast-icons");
-  let forecastTemp = document.querySelector(".forecast-temp");
-  let forecast = response.data.daily;
-  let weekdayName = document.querySelector(".weekday");
-
-  forecast.forEach(function (day) {
-    getWeekDay(day.dt);
-    getWeekDate(day.dt);
-    forecastElement.innerHTML = `<th scope="col" class="weekDay">${weekDay}<span class="weekDate">${monthAbb}/${forecastDate}</span></th>`;
+  let days = response.data.daily;
+  let forecastElement = document.querySelector(".five-day-grid");
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day, index) {
+    if (index > 0 && index < 6) {
+      getWeekDay(day.dt);
+      getWeekDate(day.dt);
+      console.log(day);
+      forecastHTML += `
+        <div class="col-2">
+          <div class="weekday-forecast">${weekDay}</div>
+          <div class="weekDate">${monthAbb}/${forecastDate}</div>
+          <div class="weekday-forecast forecast-icon">
+            <img src="${imgBaseUrl}/img/wn/${day.weather[0].icon}@2x.png"/>
+          </div>
+          <div class="weekday-forecast">${Math.round(day.temp.max)}</div>
+        </div>
+        `;
+    }
   });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 form.addEventListener("submit", submitSearch);
