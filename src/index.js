@@ -149,20 +149,25 @@ function displayTodaysForecast() {
 function displayWeekForecast(response) {
   let days = response.data.daily;
   let forecastElement = document.querySelector(".five-day-grid");
-  let forecastHTML = `<div class="row">`;
+  let forecastHTML = `<div class="row five-day-grid">`;
   days.forEach(function (day, index) {
     if (index > 0 && index < 6) {
       getWeekDay(day.dt);
       getWeekDate(day.dt);
       console.log(day);
       forecastHTML += `
-        <div class="col-2">
-          <div class="weekday-forecast">${weekDay}</div>
-          <div class="weekDate">${monthAbb}/${forecastDate}</div>
-          <div class="weekday-forecast forecast-icon">
+        <div class="col-2 grid-item">
+          <div class="grid-item">
+            ${weekDay}<br/>
+            <div class="grid-item weekDate">
+              ${monthAbb}/${forecastDate}
+            </div>
+          </div>
+          <div class="grid-item forecast-icon">
             <img src="${imgBaseUrl}/img/wn/${day.weather[0].icon}@2x.png"/>
           </div>
-          <div class="weekday-forecast">${Math.round(day.temp.max)}</div>
+          <div class="grid-item forecast-temps">${Math.round(day.temp.max)}
+          </div>
         </div>
         `;
     }
@@ -174,3 +179,4 @@ function displayWeekForecast(response) {
 form.addEventListener("submit", submitSearch);
 fahrenheit.addEventListener("click", displayFahrenheitTemp);
 celsius.addEventListener("click", displayCelsiusTemp);
+search("Beaverton");
