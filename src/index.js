@@ -74,7 +74,7 @@ function displayCurrentTemp(response) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = description;
-  iconElement.setAttribute("src", `${imgBaseUrl}/img/wn/${iconCode}@4x.png`);
+  iconElement.setAttribute("src", `${imgBaseUrl}/img/wn/${iconCode}@2x.png`);
   iconElement.setAttribute("alt", description);
   windElement.innerHTML = `Wind Speed: ${windSpeed} mph`;
   displayTodaysForecast();
