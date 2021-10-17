@@ -1,67 +1,64 @@
 <!DOCTYPE html>
 <html language="en">
   <head>
-    <title>☔️ JB Weather App</title>
+    <title>☔️ Weather App ⛈</title>
     <meta charset="UTF-8" />
-    <link href="src/styles.css" rel="stylesheet"/>
+    <link href="src/styles.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
-		/>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
-		<div class="row">
-			<form id="search-bar">		
-				<input type="text" id="city-search" placeholder="Enter your city"/>
-				<input type="submit" id="search-btn" value="Search"/>
-			</form>
-		</div>
-	  	<div class="row">
-    	<div class="col current-weather">
-      		<h2 id="current-city">Loading city...</h2>
-				<div class="row">
-					<div class="col-6">
-						<p id="current-time">Loading time...</p>
-						<p class="current-condition">Current Conditions</p>
-						<div>							
-							<p id="current-temp">55</p>
-							<div class="temp-units">
-								<span id="fahrenheit" class="active">℉</span> | <span id="celsius" class="active">℃</span>
-							</div>
-						</div>
-					</div>	
-					<div class="col-6">
-						<img id="current-icon"></img>
-					</div>
+      <div class="row">
+        <form id="search-bar">
+          <input type="text" id="city-search" placeholder="Enter your city" />
+          <input type="submit" id="search-btn" value="Search" />
+        </form>
+      </div>
+      <div class="row">
+        <div class="col forecast-background grid-padding">
+          <h2 class="forecast-header current-city">Loading city...</h2>
+            <div class="col">
+              <p id="current-time">Loading time...</p>
+            	<div class="row">
+					<img id="current-icon"></img><p id="current-temp">55</p>
+					<div class="temp-units">
+                		<span id="fahrenheit" class="active">℉</span> |
+                		<span id="celsius" class="active">℃</span>
+            		</div>
 				</div>
-				<div class="current-wind">
-					<p>Current Wind Speed: 0 mph</p>
-				</div>
-				<!-- <div class="row">
+            <p class="current-condition">Current Conditions</p><br/>
+            <div class="current-wind">
+            	<p>Wind Speed: 0 mph</p>
+            </div>
+          </div>
+          <!-- <div class="row">
 					<p class="current-warning">⚠️ Flood Warning Near You ></p>
 				</div> -->
-		</div>
-    	<div class="col today-weather">
-      		<h2 class="forecast-header">Today's Forecast</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col five-day-forecast">
-			<h2 class="forecast-header">5 Day Forecast</h2>
-			<div class="five-day-grid">
-			</div>
-		</div>
-		</div>
-		<div class="row">
-			<div class="footer-text">
-            	<a href="https://github.com/jessicapdx/weather-app">Open Source Code </a>by Jessica Barrows-Butler
-        	</div>
-		</div>
-	</div>
+        </div>
+        <div class="col forecast-background today-weather grid-padding">
+          <h2 class="forecast-header">Today's Forecast</h2>
+        </div>
+      </div>
+      <div class="row grid-padding">
+        <div class="col five-day-forecast forecast-background">
+          <h2 class="forecast-header">5 Day Forecast</h2>
+          <div class="five-day-grid"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="footer-text">
+          <a href="https://github.com/jessicapdx/weather-app"
+            >Open Source Code </a
+          >by Jessica Barrows-Butler
+        </div>
+      </div>
+    </div>
     <script src="src/index.js"></script>
   </body>
 </html>

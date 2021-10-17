@@ -33,12 +33,15 @@ function getLastUpdatedTime(response) {
   var ampm = "AM";
   let hours = fullDate.getHours();
   var ampm = "Checking time...";
-  if (hours >= 12) {
+  if (hours > 12) {
     hours = hours - 12;
     ampm = "PM";
   } else if (hours === 0) {
     hours = "01";
     ampm = "AM";
+  } else if (hours === 12) {
+    hours = "12";
+    ampm = "PM";
   } else {
     ampm = "AM";
   }
@@ -59,7 +62,7 @@ function getForecast(coordinates) {
 
 function displayCurrentTemp(response) {
   let temperatureElement = document.querySelector("#current-temp");
-  let cityElement = document.querySelector("#current-city");
+  let cityElement = document.querySelector(".current-city");
   coordinates = response.data.coord;
   let description = response.data.weather[0].description;
   let descriptionElement = document.querySelector(".current-condition");
@@ -71,7 +74,7 @@ function displayCurrentTemp(response) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = description;
-  iconElement.setAttribute("src", `${imgBaseUrl}/img/wn/${iconCode}@2x.png`);
+  iconElement.setAttribute("src", `${imgBaseUrl}/img/wn/${iconCode}@4x.png`);
   iconElement.setAttribute("alt", description);
   windElement.innerHTML = `Wind Speed: ${windSpeed} mph`;
   displayTodaysForecast();
@@ -158,16 +161,21 @@ function displayWeekForecast(response) {
       forecastHTML += `
         <div class="col-2 grid-item">
           <div class="grid-item">
-            ${weekDay}<br/>
-            <div class="grid-item weekDate">
-              ${monthAbb}/${forecastDate}
-            </div>
+            <span class="weekDay">${weekDay}<br/>
+              <span class="weekDate">
+                ${monthAbb}/${forecastDate}
+              </span>
+            </span>
           </div>
-          <div class="grid-item forecast-icon">
+          <div class="grid-item forecast-icons">
             <img src="${imgBaseUrl}/img/wn/${day.weather[0].icon}@2x.png"/>
           </div>
-          <div class="grid-item forecast-temps">${Math.round(day.temp.max)}
-          </div>
+          <div class="grid-item">
+            <div class="forecast-temps">
+            ${Math.round(day.temp.max)}
+              <span class="fahrenheit">℉</span>
+            </div>
+          </div>  
         </div>
         `;
     }
