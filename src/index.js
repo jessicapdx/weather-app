@@ -6,6 +6,7 @@ let form = document.querySelector("#search-bar");
 let celsius = document.querySelector("#celsius");
 let celsiusTemp = null;
 let forecastDate = null;
+let forecastHours = null;
 let fahrenheitElement = document.querySelector("#fahrenheit");
 let fahrenheitTemp = null;
 let fullDate = null;
@@ -22,6 +23,7 @@ function getWeekDay(dtStamp) {
 
 function getWeekDate(dtStamp) {
   fullDate = new Date(dtStamp * 1000);
+  forecastHours = fullDate.getHours();
   monthAbb = fullDate.getMonth();
   monthAbb += 1;
   forecastDate = fullDate.getDate();
@@ -58,6 +60,7 @@ function getForecast(coordinates) {
   let lon = coordinates.lon;
   let apiUrl = `${baseUrl}/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayWeekForecast);
+  axios.get(apiUrl).then(displayTodaysForecast);
 }
 
 function displayCurrentTemp(response) {
@@ -68,17 +71,14 @@ function displayCurrentTemp(response) {
   let descriptionElement = document.querySelector(".current-condition");
   let iconElement = document.querySelector("#current-icon");
   let iconCode = response.data.weather[0].icon;
-  let windSpeed = Math.round(response.data.wind.speed);
   fahrenheitTemp = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
-  console.log(response.data);
   cityElement.innerHTML = `${response.data.name} - ${response.data.sys.country}`;
   descriptionElement.innerHTML = description;
   iconElement.setAttribute("src", `${imgBaseUrl}/img/wn/${iconCode}@2x.png`);
   iconElement.setAttribute("alt", description);
-  windElement.innerHTML = `Wind Speed: ${windSpeed} mph`;
-  displayTodaysForecast();
+
   getForecast(response.data.coord);
 }
 
@@ -112,42 +112,37 @@ function displayFahrenheitTemp(temp) {
   fahrenheit.classList.add("active");
 }
 
-function displayTodaysForecast() {
+function displayTodaysForecast(response) {
+  let dailyTemps = response.data.daily[0].temp;
+  let windSpeed = Math.round(response.data.daily[0].wind_speed);
+  let morningTemp = Math.round(dailyTemps.morn);
+  let afternoonTemp = Math.round(dailyTemps.max);
+  let eveningTemp = Math.round(dailyTemps.eve);
+  let nightTemp = Math.round(dailyTemps.night);
+  console.log(dailyTemps);
   let forecastElement = document.querySelector(".today-weather");
-  let forecastHTML = "";
-  let dayTimes = ["Morning", "Afternoon", "Evening", "Overnight"];
-  dayTimes.forEach(function (time) {
-    forecastHTML =
-      forecastElement.innerHTML +
-      `
-					<table class="table table-borderless">
-						<thead>
-							<tr class="today-time-grid">
-								<th class="daytime" scope="col">Morning</th>
-								<th class="daytime" scope="col">Afternoon</th>
-								<th class="daytime" scope="col">Evening</th>
-								<th class="daytime" scope="col">Overnight</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="today-icons">
-								<td>🌦</th>
-								<td>⛈</td>
-								<td>☔️</td>
-								<td>🌘</td>
-							</tr>
-							<tr class="today-temps">
-								<td>60℉</th>
-								<td>62℉</td>
-								<td>59℉</td>
-								<td>59℉</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>	`;
-  });
+  let forecastHTML = `<div class="row">`;
+  forecastHTML += `
+    <div class="col-6 grid-item">
+      <p class="weekDay">Morning</p>
+      <p class="forecast-temps">${morningTemp}<span class="fahrenheit">℉</span></p>
+    </div>
+    <div class="col-6 grid-item">
+      <p class="weekDay">Afternoon</p>
+      <p class="forecast-temps">${afternoonTemp}<span class="fahrenheit">℉</span></p>
+    </div>
+    <div class="col-6 grid-item">
+      <p class="weekDay">Evening</p>
+      <p class="forecast-temps">${eveningTemp}<span class="fahrenheit">℉</span></p>
+    </div>
+    <div class="col-6 grid-item">
+      <p class="weekDay">Night</p>
+      <p class="forecast-temps">${nightTemp}<span class="fahrenheit">℉</span></p>
+    </div>
+        `;
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+  windElement.innerHTML = `Wind Speed: ${windSpeed} mph`;
 }
 
 function displayWeekForecast(response) {
@@ -158,7 +153,6 @@ function displayWeekForecast(response) {
     if (index > 0 && index < 6) {
       getWeekDay(day.dt);
       getWeekDate(day.dt);
-      console.log(day);
       forecastHTML += `
         <div class="col-2 grid-item">
           <div class="grid-item">
