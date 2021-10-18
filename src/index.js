@@ -72,7 +72,8 @@ function displayCurrentTemp(response) {
   fahrenheitTemp = response.data.main.temp;
 
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
-  cityElement.innerHTML = response.data.name;
+  console.log(response.data);
+  cityElement.innerHTML = `${response.data.name} - ${response.data.sys.country}`;
   descriptionElement.innerHTML = description;
   iconElement.setAttribute("src", `${imgBaseUrl}/img/wn/${iconCode}@2x.png`);
   iconElement.setAttribute("alt", description);

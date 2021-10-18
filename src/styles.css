@@ -7,8 +7,11 @@
   vertical-align: middle;
 }
 
+.current-col-1 {
+}
+
 .current-condition {
-  color: rgb(120, 120, 120);
+  color: rgb(240, 240, 240);
   font-size: 16px;
   text-transform: capitalize;
 }
@@ -19,6 +22,10 @@
   font-size: 18px;
   font-weight: 600;
   margin: 15px;
+}
+
+.current-weather {
+  color: rgb(240, 240, 240);
 }
 
 .daytime {
@@ -57,8 +64,8 @@
 
 .forecast-header {
   color: rgb(240, 240, 240);
+  display: inline-block;
   font-size: 30px;
-  margin: 15px;
   text-shadow: 4px 0px 25px rgb(14, 33, 143);
 }
 
@@ -88,7 +95,7 @@
 }
 
 .temp-units {
-  color: rgb(114, 110, 110);
+  color: rgb(240, 240, 240);
   display: inline;
   vertical-align: text-top;
   line-height: 45px;
@@ -100,7 +107,7 @@
 }
 
 .temp-units .active {
-  color: #007bff;
+  color: rgb(240, 240, 240);
 }
 
 .today-icons {
@@ -134,6 +141,7 @@
 
 #current-icon {
   animation: weatherIconAnimation 4s ease-out 0s infinite normal none;
+  display: inline-block;
 }
 
 #current-temp {

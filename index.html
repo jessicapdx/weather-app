@@ -22,26 +22,26 @@
       </div>
       <div class="row">
         <div class="col forecast-background grid-padding">
-          <div class="col">
-            <div class="col">
+          <div class="row">
+            <div class="col current-col-1 column1">
+              <h2 class="forecast-header current-city">Loading city...</h2>
+              <p id="current-time" class="current-weather">Loading time...</p>
+              <div class="current-wind current-weather">
+                <p>Wind Speed: 0 mph</p>
+              </div>
+            </div>
+            <div class="col grid-item column2">
+              <img id="current-icon"></img>
               <div>
-                <h2 class="forecast-header current-city">Loading city...</h2><img id="current-icon"></img>
+                <p id="current-temp">55</p>
+                <div class="temp-units">
+                  <span id="fahrenheit" class="active">℉</span> |
+                  <span id="celsius" class="active">℃</span>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col">
-            <p id="current-time">Loading time...</p>
-            <div class="row">
-              <p id="current-temp">55</p>
-              <div class="temp-units">
-                <span id="fahrenheit" class="active">℉</span> |
-                <span id="celsius" class="active">℃</span>
+              <div>
+                <p class="current-condition">Current Conditions</p>
               </div>
-            </div>
-            <p class="current-condition">Current Conditions</p>
-            <br />
-            <div class="current-wind">
-              <p>Wind Speed: 0 mph</p>
             </div>
           </div>
           <!-- <div class="row">
