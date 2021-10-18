@@ -18,7 +18,7 @@ let windElement = document.querySelector(".current-wind");
 
 function getWeekDay(dtStamp) {
   fullDate = new Date(dtStamp * 1000);
-  weekDay = fullDate.toLocaleString("en-US", { weekday: "long" });
+  weekDay = fullDate.toLocaleString("en-US", { weekday: "short" });
 }
 
 function getWeekDate(dtStamp) {
